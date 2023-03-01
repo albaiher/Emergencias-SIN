@@ -23,3 +23,43 @@ def call_ambulance(state, victim, ambulance, dest):
         return state
     else:
         return False
+
+def ride_ambulance(state, victim, ambulance, source, dest):
+    if state.loc[ambulance] == source and state.loc[victim] == source:
+        state.loc[ambulance] = dest
+        state.loc[victim] = dest
+        return state
+    else:
+        return False
+    
+pyhop.declare_operators(call_ambulance, ride_ambulance)
+print()
+pyhop.print_operators()
+
+# Definición de métodos para emergency
+
+def emergency_method(ambulance, victim, source, dest):
+    return [('call_ambulance', victim, ambulance, source), ('ride_ambulance', victim, ambulance, source, dest)]
+
+pyhop.declare_methods('emergency_method', emergency_method)
+print()
+pyhop.print_methods()
+
+def emergency_recursive(state, goal):
+    if len(goal.loc) > 0:
+        # solo nos interesa el primer goal
+        for who in goal.loc.keys():
+            x = state.loc[who]
+            y = goal.loc.pop(who)  # extraemos (se elimina) el goal del diccionario
+            break
+        return [('emergency_method', who, x, y), ('travel', goal)]
+    return []  # caso base: si len(goal.loc) == 0
+
+# Indicamos cuál es la descomposición de "emergency"
+
+pyhop.declare_methods('emergency', emergency_recursive)
+print()
+pyhop.print_methods()
+
+
+pyhop.pyhop(state1, [('emergency', goal1)], verbose=1)
