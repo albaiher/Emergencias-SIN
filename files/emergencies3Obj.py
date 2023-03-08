@@ -133,21 +133,7 @@ pyhop.declare_methods('deliver_victim', deliver_victim)
 print()
 pyhop.print_methods()
 
-def emergency_recursive(state, goal):
-    if len(goal.loc) > 0:
-        # solo nos interesa el primer goal
-        for who in goal.loc.keys():
-            x = state.loc[who]
-            y = goal.loc.pop(who)  # extraemos (se elimina) el goal del diccionario
-            break
-        return [('deliver_victim', who, x, y), ('emergency', goal)]
-    return []  # caso base: si len(goal.loc) == 0
-
-# Indicamos cuál es la descomposición de "emergency"
-
-# pyhop.declare_methods('emergency', emergency_recursive)
-# print()
-# pyhop.print_methods()
+ 
 
 
 pyhop.pyhop(state1, [('deliver_victim', goal1)], verbose=3)
