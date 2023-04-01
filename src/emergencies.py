@@ -44,11 +44,13 @@ def select_ambulance(state, victim, dest):
 
 # Funciones para la implementación del sistema
 
+# Comprobación del estado de la victima y actualización de la variable interna "Need_Stabilization" en caso de que sea necesario estabilizarlo
 def check_stabilization(state, victim):
     if state.victims[victim]['gravity'] <= GRAVITY_LIMIT:
         state.need_stabilization[victim] = True
     return state
 
+# Desplazamiento de la ambulancia a la localización de la victima
 def ride_to_victim(state, ambulance, dest):
     if  state.loc_ambulances[ambulance] != dest:
         state.loc_ambulances[ambulance] = dest
@@ -56,17 +58,20 @@ def ride_to_victim(state, ambulance, dest):
     else:
         return False
     
+# Proceso de estabilización de la victima
 def stabilize_victim(state, victim):
     state.need_stabilization[victim] = False
     return state
     
+# Cargamos en la ambulancia a la victima siempre y cuando ya este stabilizada y la propia ambulancia se encuentre en el lugar adecuado
 def load_ambulance(state, ambulance, victim):
     if state.loc_ambulances[ambulance] ==  state.loc[victim] and not state.need_stabilization[victim]:
         state.loc[victim] = ambulance
         return state
     else:
         return False
-    
+
+# Una vez la victima se encuentre en la ambulancia se procederá a trasladarla al hospital determinado
 def ride_ambulance(state, ambulance, victim, dest):
     if state.loc[victim] ==  ambulance:
         state.loc_ambulances[ambulance] = dest
@@ -75,6 +80,7 @@ def ride_ambulance(state, ambulance, victim, dest):
         return False
     
 
+# Cuando la victima y la ambulancia estén en el destino deseado se procederá a introducirla en el mismo
 def unload_ambulance(state, ambulance, victim, dest):
     if state.loc[victim] ==  ambulance and state.loc_ambulances[ambulance] == dest:
         state.loc[victim] = dest
@@ -128,7 +134,8 @@ def deliver_victim_iterative(state, goal):
     for victim in goal.loc.keys():
         victimInitialLoc = state.loc[victim]
         victimGoal = goal.loc[victim]
-        if victimInitialLoc != victimGoal:  # diferencia con recursivo: se vuelve a comprobar (para cada tarea travel) cada goal del
+        if victimInitialLoc != victimGoal:  
+                        # diferencia con recursivo: se vuelve a comprobar (para cada tarea travel) cada goal del
                         # diccionario de goals y solo se selecciona el primero que no esté resuelto
             return [('call_ambulance', victim, victimInitialLoc, victimGoal), ('deliver_victim', goal)]
     return []
