@@ -5,7 +5,7 @@ import pyhop
 
 state1 = pyhop.State('state1')
 
-state1.loc = {'ambulance1': 'hospital1', 'ambulance2': 'benimaclet', 'victim': 'university'}
+state1.loc = {'ambulance1': 'school', 'ambulance2': 'benimaclet', 'victim': 'university'}
 
 state1.coordinates = {'hospital1': {'X': 10, 'Y': 10}, 'hospital2': {'X': 22, 'Y': 22},
                        'park': {'X': 14, 'Y': 14}, 'school': {'X': 5, 'Y': 5}, 'benimaclet': {'X': 8, 'Y': 8},

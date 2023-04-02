@@ -11,7 +11,7 @@ state1.need_stabilization = {'victim1': False}
 state1.coordinates = {'hospital1': {'X': 10, 'Y': 10}, 'hospital2': {'X': 22, 'Y': 22},
                        'park': {'X': 14, 'Y': 14}, 'school': {'X': 5, 'Y': 5}, 'benimaclet': {'X': 8, 'Y': 8},
                       'square': {'X': 0, 'Y': 0}, 'commercialCenter': {'X': 20, 'Y': 20}, 'university': {'X': 18, 'Y': 18}}
-state1.victims = {'victim1': {'name': 'Andrés', 'age': 52, 'gravity': 2}}
+state1.victims = {'victim1': {'name': 'Andrés', 'age': 52, 'gravity': 3}}
 state1.hospitals = {'hospital1': {'name': 'La Paz', 'loc': 'hospital1'}, 'hospital2': {'name': 'Universitario', 'loc': 'hospital2'}}
 state1.ambulances = {'ambulance1': {'name': 'HK47', 'maxGravity': 2}, 'ambulance2': {'name': 'C3PO', 'maxGravity': 3}}
 

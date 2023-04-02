@@ -5,7 +5,7 @@ import pyhop
 state1 = pyhop.State('state1')
 
 state1.loc = {'victim1': 'university', 'victim2': 'commercialCenter'}
-state1.loc_ambulances = {'ambulance1': 'square', 'ambulance2': 'square'}
+state1.loc_ambulances = {'ambulance1': 'university', 'ambulance2': 'university'}
 state1.need_stabilization = {'victim1': False, 'victim2': False}
 
 state1.coordinates = {'hospital1': {'X': 10, 'Y': 10}, 'hospital2': {'X': 22, 'Y': 22},
@@ -54,9 +54,7 @@ def check_stabilization(state, victim):
 def ride_to_victim(state, ambulance, dest):
     if  state.loc_ambulances[ambulance] != dest:
         state.loc_ambulances[ambulance] = dest
-        return state
-    else:
-        return False
+    return state
     
 # Proceso de estabilización de la victima
 def stabilize_victim(state, victim):
@@ -135,7 +133,7 @@ def deliver_victim_iterative(state, goal):
         victimInitialLoc = state.loc[victim]
         victimGoal = goal.loc[victim]
         if victimInitialLoc != victimGoal:  
-                        # diferencia con recursivo: se vuelve a comprobar (para cada tarea travel) cada goal del
+                        # diferencia con recursivo: se vuelve a comprobar (para cada tarea deliver_victim) cada goal del
                         # diccionario de goals y solo se selecciona el primero que no esté resuelto
             return [('call_ambulance', victim, victimInitialLoc, victimGoal), ('deliver_victim', goal)]
     return []

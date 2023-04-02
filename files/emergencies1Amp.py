@@ -4,7 +4,7 @@ import pyhop
 # Definicion del estado
 state1 = pyhop.State('state1')
 
-state1.loc = {'ambulance1': 'hospital1', 'ambulance2': 'hospital2', 'victim1': 'university', 'victim2': 'commercialCenter'}
+state1.loc = {'ambulance1': 'hospital1', 'ambulance2': 'hospital2', 'victim1': 'university'}
 state1.need_stabilization = {'victim1': False}
 
 state1.coordinates = {'hospital1': {'X': 10, 'Y': 10}, 'hospital2': {'X': 22, 'Y': 22},
@@ -12,7 +12,7 @@ state1.coordinates = {'hospital1': {'X': 10, 'Y': 10}, 'hospital2': {'X': 22, 'Y
                       'square': {'X': 0, 'Y': 0}, 'commercialCenter': {'X': 20, 'Y': 20}, 'university': {'X': 18, 'Y': 18}}
 state1.victims = {'victim1': {'name': 'Andrés', 'age': 52, 'gravity': 2}, 'victim2': {'name': 'Miguel', 'age': 28, 'gravity': 4}}
 state1.hospitals = {'hospital1': {'name': 'La Paz', 'loc': 'hospital1'}, 'hospital2': {'name': 'Universitario', 'loc': 'hospital2'}}
-state1.ambulances = {'ambulance1': {'name': 'HK47', 'maxGravity': 2}, 'ambulance2': {'name': 'C3PO', 'maxGravity': 3}}
+state1.ambulances = {'ambulance1': {'name': 'HK47', 'maxGravity': 2}, 'ambulance2': {'name': 'C3PO', 'maxGravity': 1}}
 
 # Definición del GOAL
 goal1 = pyhop.Goal('goal1')

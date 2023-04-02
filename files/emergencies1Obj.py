@@ -4,7 +4,7 @@ import pyhop
 
 state1 = pyhop.State('state1')
 
-state1.loc = {'ambulance': 'hospital1', 'victim': 'university'}
+state1.loc = {'ambulance': 'school', 'victim': 'school'}
 
 state1.coordinates = {'hospital1': {'X': 10, 'Y': 10}, 'hospital2': {'X': 22, 'Y': 22},
                        'park': {'X': 14, 'Y': 14}, 'school': {'X': 5, 'Y': 5}, 'benimaclet': {'X': 8, 'Y': 8},
@@ -21,9 +21,8 @@ goal1.loc = {'victim': 'hospital1'}
 def call_ambulance(state, dest):
     if state.victims['victim']['gravity'] >= state.ambulances['ambulance']['maxGravity'] and state.loc['ambulance'] != dest:
         state.loc['ambulance'] = dest
-        return state
-    else:
-        return False
+
+    return state
 
 
 def ride_ambulance(state, dest):
